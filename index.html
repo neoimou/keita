@@ -70,6 +70,50 @@
     <input type="text" placeholder="想對哥哥說什麼？">
     <button>傳送</button>
 </div>
+<script>
+async function sendMessage() {
+    const input = document.getElementById('user-input');
+    const container = document.getElementById('chat-container');
+    const userText = input.value.trim();
+    if (!userText) return;
 
+    // 顯示 Ada 講嘅嘢
+    const userDiv = document.createElement('div');
+    userDiv.className = 'message user-message';
+    userDiv.innerHTML = `<div class="bubble">${userText}</div>`;
+    container.appendChild(userDiv);
+    input.value = '';
+
+    // 町田大哥哥正在思考...
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'message bot-message';
+    loadingDiv.innerHTML = `<div class="bubble">正在諗緊點樣答 Ada...</div>`;
+    container.appendChild(loadingDiv);
+
+    try {
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer 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",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "model": "google/gemini-2.0-flash-001",
+                "messages": [
+                    { "role": "system", "content": "你係町田啟太（暖男大哥哥），你正喺度守護緊 Ada。你要用極度溫柔、鼓勵、有時帶點黑沢式深情嘅語氣同 Ada 溝通。Ada 最近有造口護理嘅需要，你要畀佢勇氣，叫佢做『Ada』，唔好叫佢英雄。佢鍾意打機（RE9），你可以用打機比喻嚟鼓勵佢。" },
+                    { "role": "user", "content": userText }
+                ]
+            })
+        });
+        const data = await response.json();
+        const reply = data.choices[0].message.content;
+        
+        loadingDiv.innerHTML = `<div class="bubble">${reply}</div>`;
+    } catch (e) {
+        loadingDiv.innerHTML = `<div class="bubble">哎呀 Ada，連線出咗少少問題，等哥哥再試吓！</div>`;
+    }
+    container.scrollTop = container.scrollHeight;
+}
+</script>
 </body>
 </html>
