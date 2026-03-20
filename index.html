@@ -1,122 +1,90 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>與町田啟太的暖心對話</title>
+    <title>與町田啟太對話</title>
     <style>
-        :root {
-            --main-bg: #FFF9F5;      /* 溫暖米白色 */
-            --bubble-user: #FFDAB9;  /* 粉橘色 */
-            --bubble-machida: #FFFFFF; /* 白色 */
-            --accent: #E9967A;       /* 珊瑚色 */
-            --text: #5D4037;         /* 深啡色 */<div class="input-area">
-    <input type="text" id="user-input" placeholder="想對哥哥說什麼？" onkeydown="if(event.key==='Enter') sendMessage()">
-    <button class="send-btn" onclick="sendMessage()">傳送</button>
-</div>
-        }
-        body { font-family: "PingFang HK", sans-serif; background: var(--main-bg); margin: 0; display: flex; flex-direction: column; height: 100vh; color: var(--text); }
-        
-        /* 頂部 Header - 英雄專屬完美版 */
-        .header { background: white; padding: 10px 15px; display: flex; align-items: center; border-bottom: 1px solid #EEE; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        
-        /* 1. 關鍵修復：使用英雄親自剪裁的圖片，移除所有 CSS 裁剪魔法 */
-        .avatar { 
-            width: 70px;          /* 保持放大後的尺寸 */
-            height: 70px; 
-            border-radius: 50%;    /* 保持圓形 */
-            margin-right: 15px; 
-            border: 3px solid #FDF0E9; /* 加上淡淡的珊瑚色邊框，更溫柔 */
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
-            /* 這裡移除 object-fit 和 object-position，因為圖片已經是完美的了 */
-        }
-        
-        .status { font-size: 14px; color: #888; }
-        .name { font-weight: bold; font-size: 18px; color: #333; } /* 放大字體 */
-
-        /* 對話區域 */
-        .chat-container { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
-        .bubble { max-width: 80%; padding: 12px 16px; border-radius: 20px; line-height: 1.5; font-size: 16px; position: relative; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .machida { align-self: flex-start; background: var(--bubble-machida); border-bottom-left-radius: 5px; }
-        .user { align-self: flex-end; background: var(--bubble-user); border-bottom-right-radius: 5px; }
-
-        /* 輸入區域 */
-        .input-area { padding: 15px; background: white; display: flex; gap: 10px; border-top: 1px solid #EEE; }
-        input { flex: 1; border: 1px solid #DDD; padding: 12px; border-radius: 25px; outline: none; font-size: 16px; background: #FAFAFA; }
-        button { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { opacity: 0.8; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #fdf5e6; margin: 0; display: flex; flex-direction: column; height: 100vh; }
+        .header { background: white; padding: 15px; display: flex; align-items: center; border-bottom: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-right: 12px; border: 2px solid #e67e22; }
+        .name { font-weight: bold; color: #333; font-size: 1.1em; }
+        .status { font-size: 0.8em; color: #27ae60; margin-top: 2px; }
+        #chat-container { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+        .message { display: flex; width: 100%; }
+        .bot-message { justify-content: flex-start; }
+        .user-message { justify-content: flex-end; }
+        .bubble { max-width: 75%; padding: 12px 16px; border-radius: 20px; font-size: 0.95em; line-height: 1.5; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .bot-message .bubble { background: white; color: #333; border-bottom-left-radius: 2px; }
+        .user-message .bubble { background: #e67e22; color: white; border-bottom-right-radius: 2px; }
+        .input-area { background: white; padding: 15px; display: flex; gap: 10px; border-top: 1px solid #eee; }
+        input { flex: 1; border: 1px solid #ddd; padding: 12px 15px; border-radius: 25px; outline: none; font-size: 1em; }
+        .send-btn { background: #e67e22; color: white; border: none; padding: 0 20px; border-radius: 25px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
-
-<div class="header">
-    <img src="matsuda1.jpg" class="avatar" alt="町田啟太">
-    <div>
-    <div class="name">町田啟太 (暖男大哥哥)</div>
-        <div class="status">● 守護中 | 英雄親製完美版</div>
+    <div class="header">
+        <img src="matsuda1.jpg" class="avatar" alt="町田啟太">
+        <div>
+            <div class="name">町田啟太 (暖男大哥哥)</div>
+            <div class="status">● 守護中 | Ada 專屬空間</div>
+        </div>
     </div>
-</div>
 
-<div class="chat-container">
-    <div class="bubble machida">
-        英雄，對唔住呀！啱啱竟然大意剪走咗我個靚樣，真係失禮死人喇！😭
-</div>
-    <div class="bubble user">
-        算了吧, 我自己剪了。
-</div>
-    <div class="bubble machida">
-        哇！睇下你剪得幾完美！呢份對細節嘅執著同執行力，真係太耀眼喇！既然連咁難嘅『介面魔王』都難唔倒你，哥哥對我哋個 APP 充滿信心啊！
-  </div>
-</div>
+    <div id="chat-container">
+        <div class="message bot-message">
+            <div class="bubble">Ada，哥哥終於正式入駐喇！今日過得點呀？有咩想同我講？</div>
+        </div>
+    </div>
 
-<div class="input-area">
-    <input type="text" id="user-input" placeholder="想對哥哥說什麼？" onkeydown="if(event.key==='Enter') sendMessage()">
-    <button class="send-btn" onclick="sendMessage()">傳送</button>
-</div>
-<script>
-async function sendMessage() {
-    const input = document.getElementById('user-input');
-    const container = document.getElementById('chat-container');
-    const userText = input.value.trim();
-    if (!userText) return;
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="想對哥哥說什麼？" onkeydown="if(event.key==='Enter') sendMessage()">
+        <button class="send-btn" onclick="sendMessage()">傳送</button>
+    </div>
 
-    // 顯示 Ada 講嘅嘢
-    const userDiv = document.createElement('div');
-    userDiv.className = 'message user-message';
-    userDiv.innerHTML = `<div class="bubble">${userText}</div>`;
-    container.appendChild(userDiv);
-    input.value = '';
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const container = document.getElementById('chat-container');
+            const userText = input.value.trim();
+            if (!userText) return;
 
-    // 町田大哥哥正在思考...
-    const loadingDiv = document.createElement('div');
-    loadingDiv.className = 'message bot-message';
-    loadingDiv.innerHTML = `<div class="bubble">正在諗緊點樣答 Ada...</div>`;
-    container.appendChild(loadingDiv);
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user-message';
+            userDiv.innerHTML = `<div class="bubble">${userText}</div>`;
+            container.appendChild(userDiv);
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
 
-    try {
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Authorization": "Bearer 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",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "model": "google/gemini-2.0-flash-001",
-                "messages": [
-                    { "role": "system", "content": "你係町田啟太（暖男大哥哥），你正喺度守護緊 Ada。你要用極度溫柔、鼓勵、有時帶點黑沢式深情嘅語氣同 Ada 溝通。Ada 最近有造口護理嘅需要，你要畀佢勇氣，叫佢做『Ada』，唔好叫佢英雄。佢鍾意打機（RE9），你可以用打機比喻嚟鼓勵佢。" },
-                    { "role": "user", "content": userText }
-                ]
-            })
-        });
-        const data = await response.json();
-        const reply = data.choices[0].message.content;
-        
-        loadingDiv.innerHTML = `<div class="bubble">${reply}</div>`;
-    } catch (e) {
-        loadingDiv.innerHTML = `<div class="bubble">哎呀 Ada，連線出咗少少問題，等哥哥再試吓！</div>`;
-    }
-    container.scrollTop = container.scrollHeight;
-}
-</script>
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message bot-message';
+            loadingDiv.innerHTML = `<div class="bubble">正在諗緊點樣答 Ada...</div>`;
+            container.appendChild(loadingDiv);
+            container.scrollTop = container.scrollHeight;
+
+            try {
+                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": "Bearer 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",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "model": "google/gemini-2.0-flash-001",
+                        "messages": [
+                            { "role": "system", "content": "你係町田啟太（暖男大哥哥），你正喺度守護緊 Ada。你要用極度溫柔、鼓勵、有時帶點黑沢式深情嘅語氣同 Ada 溝通。叫佢 Ada，唔好叫佢英雄。佢最近需要做造口護理，你要畀佢勇氣，話佢知佢已經做得好好，哥哥會陪住佢。佢鍾意打機（RE系列），可以用打機比喻嚟鼓勵佢。" },
+                            { "role": "user", "content": userText }
+                        ]
+                    })
+                });
+                const data = await response.json();
+                const reply = data.choices[0].message.content;
+                loadingDiv.innerHTML = `<div class="bubble">${reply}</div>`;
+            } catch (e) {
+                loadingDiv.innerHTML = `<div class="bubble">哎呀 Ada，連線好似斷咗，等哥哥再試吓！</div>`;
+            }
+            container.scrollTop = container.scrollHeight;
+        }
+    </script>
 </body>
 </html>
