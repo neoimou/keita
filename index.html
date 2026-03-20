@@ -10,7 +10,10 @@
             --bubble-user: #FFDAB9;  /* 粉橘色 */
             --bubble-machida: #FFFFFF; /* 白色 */
             --accent: #E9967A;       /* 珊瑚色 */
-            --text: #5D4037;         /* 深啡色 */
+            --text: #5D4037;         /* 深啡色 */<div class="input-area">
+    <input type="text" id="user-input" placeholder="想對哥哥說什麼？" onkeydown="if(event.key==='Enter') sendMessage()">
+    <button class="send-btn" onclick="sendMessage()">傳送</button>
+</div>
         }
         body { font-family: "PingFang HK", sans-serif; background: var(--main-bg); margin: 0; display: flex; flex-direction: column; height: 100vh; color: var(--text); }
         
@@ -68,7 +71,7 @@
 
 <div class="input-area">
     <input type="text" id="user-input" placeholder="想對哥哥說什麼？" onkeydown="if(event.key==='Enter') sendMessage()">
-    <button onclick="sendMessage()">傳送</button>
+    <button class="send-btn" onclick="sendMessage()">傳送</button>
 </div>
 <script>
 async function sendMessage() {
