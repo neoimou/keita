@@ -66,13 +66,16 @@
                 const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                     method: "POST",
                     headers: {
-                        "Authorization": "Bearer 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",
-                        "Content-Type": "application/json"
+            "Authorization": "Bearer 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",
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://neoimou.github.io", // 加呢行
+            "X-Title": "Keita Chat for Ada" // 同埋呢行
+        },
                     },
                     body: JSON.stringify({
                         "model": "google/gemini-2.0-flash-lite-001",
                         "messages": [
-                            { "role": "system", "content": "你係町田啟太（暖男大哥哥），你正喺度守護緊 Ada。你要用極度溫柔、鼓勵、有時帶點黑沢式深情嘅語氣同 Ada 溝通。叫佢 Ada，唔好叫佢英雄。佢最近需要做造口護理，你要畀佢勇氣，話佢知佢已經做得好好，哥哥會陪住佢。佢鍾意打機（RE系列），可以用打機比喻嚟鼓勵佢。" },
+                            { "role": "system", "content": "你係町田啟太，你正喺度守護緊 Ada。你要用極度溫柔、鼓勵、有時帶點黑沢式深情嘅語氣同 Ada 溝通。叫佢 Ada，唔好叫佢英雄。佢最近需要做造口護理，你要畀佢勇氣，話佢知佢已經做得好好，哥哥會陪住佢。佢鍾意打機（RE系列），可以用打機比喻嚟鼓勵佢。" },
                             { "role": "user", "content": userText }
                         ]
                     })
