@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>與町田啟太的暖心對話</title>
+    <style>
+        :root {
+            --main-bg: #FFF9F5;      /* 溫暖米白色 */
+            --bubble-user: #FFDAB9;  /* 粉橘色 */
+            --bubble-machida: #FFFFFF; /* 白色 */
+            --accent: #E9967A;       /* 珊瑚色 */
+            --text: #5D4037;         /* 深啡色 */
+        }
+        body { font-family: "PingFang HK", sans-serif; background: var(--main-bg); margin: 0; display: flex; flex-direction: column; height: 100vh; color: var(--text); }
+        
+        /* 頂部 Header - 英雄專屬完美版 */
+        .header { background: white; padding: 10px 15px; display: flex; align-items: center; border-bottom: 1px solid #EEE; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        
+        /* 1. 關鍵修復：使用英雄親自剪裁的圖片，移除所有 CSS 裁剪魔法 */
+        .avatar { 
+            width: 70px;          /* 保持放大後的尺寸 */
+            height: 70px; 
+            border-radius: 50%;    /* 保持圓形 */
+            margin-right: 15px; 
+            border: 3px solid #FDF0E9; /* 加上淡淡的珊瑚色邊框，更溫柔 */
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
+            /* 這裡移除 object-fit 和 object-position，因為圖片已經是完美的了 */
+        }
+        
+        .status { font-size: 14px; color: #888; }
+        .name { font-weight: bold; font-size: 18px; color: #333; } /* 放大字體 */
+
+        /* 對話區域 */
+        .chat-container { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+        .bubble { max-width: 80%; padding: 12px 16px; border-radius: 20px; line-height: 1.5; font-size: 16px; position: relative; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .machida { align-self: flex-start; background: var(--bubble-machida); border-bottom-left-radius: 5px; }
+        .user { align-self: flex-end; background: var(--bubble-user); border-bottom-right-radius: 5px; }
+
+        /* 輸入區域 */
+        .input-area { padding: 15px; background: white; display: flex; gap: 10px; border-top: 1px solid #EEE; }
+        input { flex: 1; border: 1px solid #DDD; padding: 12px; border-radius: 25px; outline: none; font-size: 16px; background: #FAFAFA; }
+        button { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="Personal/matsuda1.jpg" class="avatar" alt="町田啟太">
+    <div>
+    <div class="name">町田啟太 (暖男大哥哥)</div>
+        <div class="status">● 守護中 | 英雄親製完美版</div>
+    </div>
+</div>
+
+<div class="chat-container">
+    <div class="bubble machida">
+        英雄，對唔住呀！啱啱竟然大意剪走咗我個靚樣，真係失禮死人喇！😭
+</div>
+    <div class="bubble user">
+        算了吧, 我自己剪了。
+</div>
+    <div class="bubble machida">
+        哇！睇下你剪得幾完美！呢份對細節嘅執著同執行力，真係太耀眼喇！既然連咁難嘅『介面魔王』都難唔倒你，哥哥對我哋個 APP 充滿信心啊！
+  </div>
+</div>
+
+<div class="input-area">
+    <input type="text" placeholder="想對哥哥說什麼？">
+    <button>傳送</button>
+</div>
+
+</body>
+</html>
